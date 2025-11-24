@@ -31,22 +31,21 @@ Simulador interactivo para el estudio de **Movimiento Rectilíneo Uniforme (MRU)
 4. **Observar**: Anota los valores de tiempo, posición y velocidad en tiempo real
 5. **Exportar datos**: Descarga los datos en CSV para crear tus propias gráficas
 
-## 🎓 Objetivos Pedagógicos
+## 🎓 Objetivos para el Curso de Física General
 
 Este simulador permite a los estudiantes:
-- Familiarizarse con los conceptos de MRU y MUA
-- Observar diferencias entre movimientos con y sin aceleración
-- Recolectar datos experimentales para análisis
+- Familiarizarse con los conceptos de MRU y MUA mediante una animación didáctica
+- Observar diferencias entre movimientos con y sin aceleración, al utilizar los mismo parámetros de posición inicial y velocidad inicial
+- Recolectar datos experimentales para análisis posterior en programas como Matlab
 - Construir gráficas de posición, velocidad y aceleración
-- Comparar simultáneamente dos movimientos diferentes
 
 ## 💾 Datos Exportados
 
 El simulador genera archivos CSV con las siguientes columnas:
-- **Tiempo (s)**: Tiempo transcurrido
-- **Posición (m)**: Posición del objeto
-- **Velocidad (m/s)**: Velocidad instantánea
-- **Aceleración (m/s²)**: Aceleración constante
+- Tiempo (s:  Tiempo transcurrido
+- Posición (m): Posición del objeto
+- Velocidad (m/s) Velocidad instantánea
+- Aceleración (m/s²): Aceleración constante
 
 ## 🔧 Tecnología
 
