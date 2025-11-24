@@ -42,7 +42,7 @@ Este simulador permite a los estudiantes:
 ## 💾 Datos Exportados
 
 El simulador genera archivos CSV con las siguientes columnas:
-- Tiempo (s:  Tiempo transcurrido
+- Tiempo (s):  Tiempo transcurrido
 - Posición (m): Posición del objeto
 - Velocidad (m/s) Velocidad instantánea
 - Aceleración (m/s²): Aceleración constante
@@ -50,7 +50,7 @@ El simulador genera archivos CSV con las siguientes columnas:
 ## 🔧 Tecnología
 
 - **HTML5 Canvas** para visualización
-- **JavaScript puro** (sin dependencias externas)
+- **JavaScript ** (sin dependencias externas)
 - **CSS3** con diseño responsive
 - **Compatibilidad**: Chrome, Firefox, Safari, Edge (últimas versiones)
 
