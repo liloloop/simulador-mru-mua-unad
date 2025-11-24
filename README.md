@@ -6,7 +6,7 @@ Simulador interactivo para el estudio de **Movimiento Rectilíneo Uniforme (MRU)
 **Desarrollado para:** UNAD - Curso de Física General
 
 ## 🌐 Acceso al Simulador
-👉 **[Abrir Simulador](URL_AQUI)** *(reemplazar con tu URL de GitHub Pages)*
+👉 **[Abrir Simulador](https://liloloop.github.io/simulador-mru-mua-unad/)**
 
 ## 📚 Características
 
