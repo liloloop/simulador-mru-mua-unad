@@ -50,7 +50,7 @@ El simulador genera archivos CSV con las siguientes columnas:
 ## 🔧 Tecnología
 
 - **HTML5 Canvas** para visualización
-- **JavaScript ** (sin dependencias externas)
+- **JavaScript** (sin dependencias externas)
 - **CSS3** con diseño responsive
 - **Compatibilidad**: Chrome, Firefox, Safari, Edge (últimas versiones)
 
