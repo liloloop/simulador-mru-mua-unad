@@ -248,37 +248,6 @@
             font-family: 'Courier New', monospace;
         }
 
-        .graph-container {
-            margin-top: 20px;
-        }
-
-        .graph-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-        }
-
-        .graph-tab {
-            padding: 8px 16px;
-            border: 1px solid var(--color-border);
-            background: transparent;
-            border-radius: 6px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .graph-tab:hover {
-            background: var(--color-border);
-        }
-
-        .graph-tab.active {
-            background: var(--color-primary);
-            color: white;
-            border-color: var(--color-primary);
-        }
-
         .instructions {
             background: var(--color-bg-1);
             padding: 16px;
@@ -311,51 +280,6 @@
             font-size: 13px;
             font-weight: 600;
             margin-top: 12px;
-        }
-
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 16px;
-            font-size: 12px;
-        }
-
-        .data-table th,
-        .data-table td {
-            padding: 8px;
-            text-align: center;
-            border: 1px solid var(--color-border);
-        }
-
-        .data-table th {
-            background: var(--color-border);
-            font-weight: 600;
-            color: var(--color-text);
-        }
-
-        .data-table td {
-            font-family: 'Courier New', monospace;
-        }
-
-        .legend {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            margin-top: 12px;
-            flex-wrap: wrap;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-        }
-
-        .legend-color {
-            width: 20px;
-            height: 3px;
-            border-radius: 2px;
         }
     </style>
 </head>
@@ -534,7 +458,6 @@
             t: 0, x: 0, v: 5,
             running: false,
             data: {t: [], x: [], v: [], a: []},
-            graphType: 'position',
             isMUA: false
         };
 
@@ -543,11 +466,10 @@
             t: 0, x: 0, v: 2,
             running: false,
             data: {t: [], x: [], v: [], a: []},
-            graphType: 'position',
             isMUA: false
         };
 
-        const dt = 0.1; // Intervalo de tiempo
+        const dt = 0.1;
         let animationId1, animationId2;
 
         // Configuración de canvas
@@ -555,11 +477,6 @@
         const ctx1 = canvas1.getContext('2d');
         const canvas2 = document.getElementById('canvas2');
         const ctx2 = canvas2.getContext('2d');
-
-        const graph1 = document.getElementById('graph1');
-        const gctx1 = graph1.getContext('2d');
-        const graph2 = document.getElementById('graph2');
-        const gctx2 = graph2.getContext('2d');
 
         // Event listeners para controles - Sim 1
         document.getElementById('x01').addEventListener('input', (e) => {
@@ -670,12 +587,10 @@
         function animate1() {
             if (!sim1.running) return;
 
-            // Actualizar física
             sim1.t += dt;
             sim1.v = sim1.v0 + sim1.a * sim1.t;
             sim1.x = sim1.x0 + sim1.v0 * sim1.t + 0.5 * sim1.a * sim1.t * sim1.t;
 
-            // Guardar datos
             sim1.data.t.push(sim1.t);
             sim1.data.x.push(sim1.x);
             sim1.data.v.push(sim1.v);
@@ -684,7 +599,6 @@
             updateDisplay1();
             drawMotion1();
 
-            // Detener si sale de límites
             if (Math.abs(sim1.x) > 200 || sim1.t > 30) {
                 pauseSim1();
                 return;
@@ -736,7 +650,6 @@
             const centerY = canvas1.height / 2;
             const scale = 2;
 
-            // Eje
             ctx1.strokeStyle = getComputedStyle(document.body).getPropertyValue('--color-border');
             ctx1.lineWidth = 2;
             ctx1.beginPath();
@@ -744,7 +657,6 @@
             ctx1.lineTo(canvas1.width, centerY);
             ctx1.stroke();
 
-            // Marcas de escala
             ctx1.fillStyle = getComputedStyle(document.body).getPropertyValue('--color-text-secondary');
             ctx1.font = '10px monospace';
             for (let i = -100; i <= 100; i += 20) {
@@ -758,7 +670,6 @@
                 }
             }
 
-            // Objeto móvil
             const objX = canvas1.width / 2 + sim1.x * scale;
             if (objX >= 0 && objX <= canvas1.width) {
                 ctx1.fillStyle = '#21808d';
@@ -766,7 +677,6 @@
                 ctx1.arc(objX, centerY, 8, 0, Math.PI * 2);
                 ctx1.fill();
 
-                // Vector velocidad
                 const vScale = 3;
                 ctx1.strokeStyle = '#a84b2f';
                 ctx1.lineWidth = 2;
@@ -775,7 +685,6 @@
                 ctx1.lineTo(objX + sim1.v * vScale, centerY);
                 ctx1.stroke();
                 
-                // Flecha
                 const arrowLen = 6;
                 const angle = sim1.v > 0 ? 0 : Math.PI;
                 ctx1.beginPath();
