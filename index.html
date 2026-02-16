@@ -556,16 +556,17 @@
                     sim1.x = sim1.x0;
                     sim1.v = sim1.v0;
                     sim1.data = {t: [], x: [], v: [], a: []};
-                    
-                    // *** CAMBIO: registrar estado inicial t = 0 ***
+
+                    // registrar estado inicial t = 0
                     sim1.data.t.push(0);
                     sim1.data.x.push(sim1.x0);
-                    sim1.data.v.push(sim1.v0);sim1.data.a.push(sim1.a);
-                    
+                    sim1.data.v.push(sim1.v0);
+                    sim1.data.a.push(sim1.a);
                 }
                 animate1();
             }
         }
+
 
         function pauseSim1() {
             sim1.running = false;
@@ -833,6 +834,7 @@
         // Inicialización
         drawMotion1();
         drawMotion2();
+    </script>
         
         <!-- Formulario oculto que envía los datos a Google Forms -->
         <form id="gform" action="https://docs.google.com/forms/d/e/1FAIpQLSc-x1KIqa5aXU61PT-hMfKgMtbM8VkX2yUU88Q2MCGhY2C_ww/formResponse" method="POST" target="hidden_iframe" style="display:none;">
@@ -843,6 +845,6 @@
         </form>
         <iframe name="hidden_iframe" style="display:none;"></iframe>
 
-    </script>
+  
 </body>
 </html>
