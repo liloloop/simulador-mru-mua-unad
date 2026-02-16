@@ -470,6 +470,7 @@
         };
 
         const dt = 0.1;
+        const T_MAX = 11; // nuevo límite de tiempo en segundos
         let animationId1, animationId2;
 
         // Configuración de canvas
@@ -534,6 +535,12 @@
                     sim1.x = sim1.x0;
                     sim1.v = sim1.v0;
                     sim1.data = {t: [], x: [], v: [], a: []};
+                    
+                    / *** CAMBIO: registrar estado inicial t = 0 ***
+                    sim1.data.t.push(0);
+                    sim1.data.x.push(sim1.x0);
+                    sim1.data.v.push(sim1.v0);sim1.data.a.push(sim1.a);
+                    
                 }
                 animate1();
             }
@@ -562,6 +569,11 @@
                     sim2.x = sim2.x0;
                     sim2.v = sim2.v0;
                     sim2.data = {t: [], x: [], v: [], a: []};
+                    // *** CAMBIO: registrar estado inicial t = 0 ***
+                    sim2.data.t.push(0);
+                    sim2.data.x.push(sim2.x0);
+                    sim2.data.v.push(sim2.v0);
+                    sim2.data.a.push(sim2.a);
                 }
                 animate2();
             }
@@ -598,8 +610,8 @@
 
             updateDisplay1();
             drawMotion1();
-
-            if (Math.abs(sim1.x) > 200 || sim1.t > 30) {
+            // *** CAMBIO: antes era sim1.t > 30 ***
+            if (Math.abs(sim1.x) > 200 || sim1.t >= T_MAX) {
                 pauseSim1();
                 return;
             }
@@ -621,8 +633,8 @@
 
             updateDisplay2();
             drawMotion2();
-
-            if (Math.abs(sim2.x) > 200 || sim2.t > 30) {
+            // *** CAMBIO: antes era sim2.t > 30 ***
+            if (Math.abs(sim2.x) > 200 || sim2.t >= T_MAX) {
                 pauseSim2();
                 return;
             }
