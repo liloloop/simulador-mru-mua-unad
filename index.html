@@ -296,6 +296,27 @@
             </div>
         </div>
 
+        <div class="card" style="margin-bottom: 16px;">
+            <h2>Registro de uso</h2>
+            <p style="font-size: 13px; color: var(--color-text-secondary);">
+                Ingresa tus datos y pulsa “Registrar uso”.
+            </p>
+            <div class="control-group">
+                <label for="studentName">Nombre completo</label>
+                <input type="text" id="studentName" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--color-border);">
+            </div>
+            <div class="control-group">
+                <label for="studentId">Cédula</label>
+                <input type="text" id="studentId" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--color-border);">
+            </div>
+            <button class="btn-primary" onclick="sendUsageLog()">
+                📝 Registrar uso
+            </button>
+            <div id="logStatus" style="margin-top:8px; font-size:12px; color:var(--color-text-secondary);"></div>
+        </div>
+
+
+        
         <div class="instructions">
             <h3>📋 Instrucciones de Uso</h3>
             <ol>
@@ -788,10 +809,40 @@
             a.download = 'datos_movimiento2.csv';
             a.click();
         }
+        function sendUsageLog() {
+            const name = document.getElementById('studentName').value.trim();
+            const id = document.getElementById('studentId').value.trim();
+            const status = document.getElementById('logStatus');
 
+            if (!name || !id) {
+                status.textContent = 'Por favor, completa nombre y cédula antes de registrar.';
+                return;
+            }
+
+            // Copiar valores a los campos que entiende Google Forms
+            document.getElementById('gform_name').value = name;
+            document.getElementById('gform_id').value = id;
+
+            // Enviar el formulario oculto
+            document.getElementById('gform').submit();
+
+            status.textContent = 'Registro enviado. Gracias.';
+        }
+
+        
         // Inicialización
         drawMotion1();
         drawMotion2();
+        
+        <!-- Formulario oculto que envía los datos a Google Forms -->
+        <form id="gform" action="https://docs.google.com/forms/d/e/1FAIpQLSc-x1KIqa5aXU61PT-hMfKgMtbM8VkX2yUU88Q2MCGhY2C_ww/formResponse" method="POST" target="hidden_iframe" style="display:none;">
+            <!-- Nombre completo -->
+            <input type="text" name="entry.19476781" id="gform_name">
+            <!-- Cédula -->
+            <input type="text" name="entry.251754833" id="gform_id">
+        </form>
+        <iframe name="hidden_iframe" style="display:none;"></iframe>
+
     </script>
 </body>
 </html>
