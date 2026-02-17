@@ -820,31 +820,30 @@
                 return;
             }
 
-            // Copiar valores a los campos que entiende Google Forms
-            document.getElementById('gform_name').value = name;
-            document.getElementById('gform_id').value = id;
+            // URL base del formulario (vista)
+            const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc-x1KIqa5aXU61PT-hMfKgMtbM8VkX2yUU88Q2MCGhY2C_ww/viewform';
 
-            // Enviar el formulario oculto
-            document.getElementById('gform').submit();
+            // entry.19476781 = Nombre completo
+            // entry.251754833 = Cédula
+            const params = new URLSearchParams({
+                'entry.19476781': name,
+                'entry.251754833': id
+            });
 
-            status.textContent = 'Registro enviado. Gracias.';
+            const finalUrl = `${baseUrl}?${params.toString()}`;
+
+            // Abrir el formulario prellenado en otra pestaña
+            window.open(finalUrl, '_blank');
+
+            status.textContent = 'Formulario abierto en una nueva pestaña. Por favor verifica y pulsa "Enviar".';
         }
+
 
         
         // Inicialización
         drawMotion1();
         drawMotion2();
     </script>
-        
-        <!-- Formulario oculto que envía los datos a Google Forms -->
-        <form id="gform" action="https://docs.google.com/forms/d/e/1FAIpQLSc-x1KIqa5aXU61PT-hMfKgMtbM8VkX2yUU88Q2MCGhY2C_ww/formResponse" method="POST" target="hidden_iframe" style="display:none;">
-            <!-- Nombre completo -->
-            <input type="text" name="entry.19476781" id="gform_name">
-            <!-- Cédula -->
-            <input type="text" name="entry.251754833" id="gform_id">
-        </form>
-        <iframe name="hidden_iframe" style="display:none;"></iframe>
-
-  
+              
 </body>
 </html>
