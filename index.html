@@ -347,7 +347,7 @@
                 <div class="control-group">
                     <label>Posición Inicial (x₀)</label>
                     <div class="control-row">
-                        <input type="range" id="x01" min="-50" max="50" value="0" step="1">
+                        <input type="range" id="x01" min="-50" max="50" value="0" step="0.1">
                         <span class="value-display"><span id="x01Value">0</span> m</span>
                     </div>
                 </div>
@@ -355,7 +355,7 @@
                 <div class="control-group">
                     <label>Velocidad Inicial (v₀)</label>
                     <div class="control-row">
-                        <input type="range" id="v01" min="-20" max="20" value="5" step="0.5">
+                        <input type="range" id="v01" min="-20" max="20" value="5" step="0.1">
                         <span class="value-display"><span id="v01Value">5</span> m/s</span>
                     </div>
                 </div>
@@ -415,7 +415,7 @@
                 <div class="control-group">
                     <label>Posición Inicial (x₀)</label>
                     <div class="control-row">
-                        <input type="range" id="x02" min="-50" max="50" value="0" step="1">
+                        <input type="range" id="x02" min="-50" max="50" value="0" step="0.1">
                         <span class="value-display"><span id="x02Value">0</span> m</span>
                     </div>
                 </div>
@@ -423,7 +423,7 @@
                 <div class="control-group">
                     <label>Velocidad Inicial (v₀)</label>
                     <div class="control-row">
-                        <input type="range" id="v02" min="-20" max="20" value="2" step="0.5">
+                        <input type="range" id="v02" min="-20" max="20" value="2" step="0.1">
                         <span class="value-display"><span id="v02Value">2</span> m/s</span>
                     </div>
                 </div>
@@ -503,12 +503,12 @@
         // Event listeners para controles - Sim 1
         document.getElementById('x01').addEventListener('input', (e) => {
             sim1.x0 = parseFloat(e.target.value);
-            document.getElementById('x01Value').textContent = sim1.x0;
+            document.getElementById('x01Value').textContent = sim1.x0.toFixed(1);
         });
 
         document.getElementById('v01').addEventListener('input', (e) => {
             sim1.v0 = parseFloat(e.target.value);
-            document.getElementById('v01Value').textContent = sim1.v0;
+            document.getElementById('v01Value').textContent = sim1.v0.toFixed(1);
         });
 
         document.getElementById('a1').addEventListener('input', (e) => {
@@ -527,12 +527,12 @@
         // Event listeners para controles - Sim 2
         document.getElementById('x02').addEventListener('input', (e) => {
             sim2.x0 = parseFloat(e.target.value);
-            document.getElementById('x02Value').textContent = sim2.x0;
+            document.getElementById('x02Value').textContent = sim2.x0.toFixed(1);
         });
 
         document.getElementById('v02').addEventListener('input', (e) => {
             sim2.v0 = parseFloat(e.target.value);
-            document.getElementById('v02Value').textContent = sim2.v0;
+            document.getElementById('v02Value').textContent = sim2.v0.toFixed(1);
         });
 
         document.getElementById('a2').addEventListener('input', (e) => {
