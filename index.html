@@ -299,7 +299,7 @@
         <div class="card" style="margin-bottom: 16px;">
             <h2>Registro de uso</h2>
             <p style="font-size: 13px; color: var(--color-text-secondary);">
-                Ingresa tus datos y pulsa “Registrar uso”.
+                Ingresa tus datos”.
             </p>
             <div class="control-group">
                 <label for="studentName">Nombre completo</label>
@@ -309,9 +309,6 @@
                 <label for="studentId">Cédula</label>
                 <input type="text" id="studentId" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--color-border);">
             </div>
-            <button class="btn-primary" onclick="sendUsageLog()">
-                📝 Registrar uso
-            </button>
             <div id="logStatus" style="margin-top:8px; font-size:12px; color:var(--color-text-secondary);"></div>
         </div>
 
@@ -810,34 +807,7 @@
             a.download = 'datos_movimiento2.csv';
             a.click();
         }
-        function sendUsageLog() {
-            const name = document.getElementById('studentName').value.trim();
-            const id = document.getElementById('studentId').value.trim();
-            const status = document.getElementById('logStatus');
-
-            if (!name || !id) {
-                status.textContent = 'Por favor, completa nombre y cédula antes de registrar.';
-                return;
-            }
-
-            // URL base del formulario (vista)
-            const baseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc-x1KIqa5aXU61PT-hMfKgMtbM8VkX2yUU88Q2MCGhY2C_ww/viewform';
-
-            // entry.19476781 = Nombre completo
-            // entry.251754833 = Cédula
-            const params = new URLSearchParams({
-                'entry.19476781': name,
-                'entry.251754833': id
-            });
-
-            const finalUrl = `${baseUrl}?${params.toString()}`;
-
-            // Abrir el formulario prellenado en otra pestaña
-            window.open(finalUrl, '_blank');
-
-            status.textContent = 'Formulario abierto en una nueva pestaña. Por favor verifica y pulsa "Enviar".';
-        }
-
+       
 
         
         // Inicialización
