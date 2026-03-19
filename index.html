@@ -159,6 +159,18 @@
             font-size: 14px;
         }
 
+        .btn-step {
+            flex: none;
+            padding: 2px 6px;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .btn-step:hover {
+            transform: none;
+        }
+
         .button-group {
             display: flex;
             gap: 10px;
@@ -344,7 +356,9 @@
                 <div class="control-group">
                     <label>Posición Inicial (x₀)</label>
                     <div class="control-row">
+                        <button type="button" class="btn-secondary btn-step" onclick="adjustRange('x01', -1)" aria-label="Disminuir">−</button>
                         <input type="range" id="x01" min="-50" max="50" value="0" step="0.1">
+                        <button type="button" class="btn-secondary btn-step" onclick="adjustRange('x01', 1)" aria-label="Aumentar">+</button>
                         <span class="value-display"><span id="x01Value">0</span> m</span>
                     </div>
                 </div>
@@ -352,7 +366,9 @@
                 <div class="control-group">
                     <label>Velocidad Inicial (v₀)</label>
                     <div class="control-row">
+                        <button type="button" class="btn-secondary btn-step" onclick="adjustRange('v01', -1)" aria-label="Disminuir">−</button>
                         <input type="range" id="v01" min="-35" max="35" value="5" step="0.1">
+                        <button type="button" class="btn-secondary btn-step" onclick="adjustRange('v01', 1)" aria-label="Aumentar">+</button>
                         <span class="value-display"><span id="v01Value">5</span> m/s</span>
                     </div>
                 </div>
@@ -360,7 +376,9 @@
                 <div class="control-group" id="accel1Group" style="display:none;">
                     <label>Aceleración (a)</label>
                     <div class="control-row">
+                        <button type="button" class="btn-secondary btn-step" onclick="adjustRange('a1', -1)" aria-label="Disminuir">−</button>
                         <input type="range" id="a1" min="-8" max="8" value="0" step="0.1">
+                        <button type="button" class="btn-secondary btn-step" onclick="adjustRange('a1', 1)" aria-label="Aumentar">+</button>
                         <span class="value-display"><span id="a1Value">0</span> m/s²</span>
                     </div>
                 </div>
@@ -412,7 +430,9 @@
                 <div class="control-group">
                     <label>Posición Inicial (x₀)</label>
                     <div class="control-row">
+                        <button type="button" class="btn-secondary btn-step" onclick="adjustRange('x02', -1)" aria-label="Disminuir">−</button>
                         <input type="range" id="x02" min="-50" max="50" value="0" step="0.1">
+                        <button type="button" class="btn-secondary btn-step" onclick="adjustRange('x02', 1)" aria-label="Aumentar">+</button>
                         <span class="value-display"><span id="x02Value">0</span> m</span>
                     </div>
                 </div>
@@ -420,7 +440,9 @@
                 <div class="control-group">
                     <label>Velocidad Inicial (v₀)</label>
                     <div class="control-row">
+                        <button type="button" class="btn-secondary btn-step" onclick="adjustRange('v02', -1)" aria-label="Disminuir">−</button>
                         <input type="range" id="v02" min="-35" max="35" value="2" step="0.1">
+                        <button type="button" class="btn-secondary btn-step" onclick="adjustRange('v02', 1)" aria-label="Aumentar">+</button>
                         <span class="value-display"><span id="v02Value">2</span> m/s</span>
                     </div>
                 </div>
@@ -428,7 +450,9 @@
                 <div class="control-group" id="accel2Group" style="display:none;">
                     <label>Aceleración (a)</label>
                     <div class="control-row">
+                        <button type="button" class="btn-secondary btn-step" onclick="adjustRange('a2', -1)" aria-label="Disminuir">−</button>
                         <input type="range" id="a2" min="-8" max="8" value="1.5" step="0.1">
+                        <button type="button" class="btn-secondary btn-step" onclick="adjustRange('a2', 1)" aria-label="Aumentar">+</button>
                         <span class="value-display"><span id="a2Value">1.5</span> m/s²</span>
                     </div>
                 </div>
@@ -496,6 +520,20 @@
         const ctx1 = canvas1.getContext('2d');
         const canvas2 = document.getElementById('canvas2');
         const ctx2 = canvas2.getContext('2d');
+
+        // Ajustar valor del slider con botones (evita imprecisión del deslizador)
+        function adjustRange(inputId, delta) {
+            const input = document.getElementById(inputId);
+            const min = parseFloat(input.min);
+            const max = parseFloat(input.max);
+            const step = parseFloat(input.step);
+            let val = parseFloat(input.value);
+            val += delta * step;
+            val = Math.round(val / step) * step; // evita errores de punto flotante
+            val = Math.max(min, Math.min(max, val));
+            input.value = val;
+            input.dispatchEvent(new Event('input'));
+        }
 
         // Event listeners para controles - Sim 1
         document.getElementById('x01').addEventListener('input', (e) => {
